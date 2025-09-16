@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikringsdagen – SeeSafe</title>
+    <meta
+      name="description"
+      content="Sikringsdagen samler interessenter, fagfolk og borgere med ét formål: at skabe større tryghed og bedre sikring i Danmark."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header / Navigation -->
+    <header class="topbar">
+      <div class="nav-top">
+        <div class="wrap nav-top-inner">
+          <a class="brand-center" href="#" aria-label="Forside">
+            <!-- Udskift src med dit logo -->
+            <img
+              src="billeder/sikringsdagenlogopng.png"
+              alt="Sikringsdagen"
+              class="logo-centered"
+            />
+          </a>
+          <!-- Udskift src med din medalje/guld-badge -->
+          <img
+            src="billeder\certificateeksempel.png"
+            alt="Medalje"
+            class="medal-badge"
+          />
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Primær navigation">
+        <div class="wrap">
+          <ul class="menu-center">
+            <li><a href="#om">Om sikringsdagen</a></li>
+            <li><a href="#partners">Samarbejdspartnere</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div
+        class="hero-img"
+        role="img"
+        aria-label="Servicebil og værktøj ved ankomst"
+      ></div>
+      <div class="overlay">
+        <div class="wrap">
+          <div class="panel">
+            <h2>Velkommen til Sikringsdagen</h2>
+            <p>
+              Sikringsdagen samler interessenter, fagfolk og borgere med ét
+              formål: at skabe større tryghed og bedre sikring i Danmark. Gennem
+              inspiration, rådgivning og gode idéer viser vi, hvordan små og
+              store tiltag kan hjælpe med at beskytte dit hjem, dit firma — og
+              dig selv.
+            </p>
+            <p>
+              Deltag i workshops, se demonstrationsprodukter, lær hvilke
+              digitale løsninger der virker, og bliv klogere på hvordan du
+              forebygger indbrud, brand og databrud.
+            </p>
+            <p class="muted">
+              Bliv certificeret deltager — og vær med til at gøre en forskel.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why box -->
+    <section id="om">
+      <div class="wrap">
+        <div class="why">
+          <h3>Hvorfor deltage på Sikringsdagen?</h3>
+          <p>
+            Sikringsdagen er din mulighed for at blive klædt bedre på til en
+            hverdag med større tryghed og bedre forebyggelse. På dagen samles
+            eksperter, leverandører, virksomheder og privatpersoner med ét
+            fælles mål: at styrke sikkerheden – både fysisk og digitalt.
+          </p>
+          <p>
+            Som deltager får du ikke blot ny viden, men også konkrete redskaber
+            og inspiration, du kan tage med hjem og bruge med det samme. Du
+            bliver præsenteret for de nyeste trends inden for sikring, lærer
+            hvordan du kan beskytte både dit hjem og din virksomhed, og får
+            indsigt i, hvordan små ændringer kan gøre en stor forskel.
+          </p>
+          <p>
+            Vi tror på, at viden giver tryghed. Derfor giver Sikringsdagen dig
+            muligheden for at lære af fagfolk, se løsninger i praksis og blive
+            en del af et netværk, hvor erfaringer deles og nye idéer opstår. Ved
+            at deltage bliver du bedre rustet til at træffe de rigtige valg, når
+            det handler om sikkerhed — og du får ro i maven til at fokusere på
+            det, der betyder mest i din hverdag.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two column: bullets + image -->
+    <section>
+      <div class="wrap grid">
+        <div class="card bullets">
+          <h4>Det kan du opleve på dagen:</h4>
+          <ul>
+            <li>
+              <strong>Inspiration og rådgivning</strong> – få gode råd til,
+              hvordan du forebygger indbrud, brand og tyveri.
+            </li>
+            <li>
+              <strong>Tech og produkter</strong> – oplev de nyeste
+              alarmsystemer, sensorer, kameraer og digitale løsninger.
+            </li>
+            <li>
+              <strong>Workshops og ekspertpaneler</strong> – hør fagfolk dele
+              erfaringer og best practices.
+            </li>
+            <li>
+              <strong>Netværk og dialog</strong> – mød andre med interesse for
+              sikring og del idéer til, hvordan trygheden kan styrkes lokalt.
+            </li>
+          </ul>
+        </div>
+        <figure class="photo">
+          <img
+            src="billeder\Alm Farve (39).jpg"
+            alt="Instruktør viser sikkerhedsløsning på skærm"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section>
+      <div class="wrap">
+        <div class="cta">
+          <h3>
+            Bliv en del af Sikringsdagen — og vær med til at skabe mere tryghed
+            i hverdagen.
+          </h3>
+          <div class="logo" aria-label="SeeSafe logo">
+            <span class="see">See</span><span class="safe">Safe</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        © <span id="year"></span> SeeSafe • <a href="#kontakt">Kontakt</a>
+      </div>
+    </footer>
+
+    <!--
+    🔧 Billeder
+    Udskift placeholders i /assets med dine rigtige billeder:
+      - assets/hero.jpg (baggrund i hero)
+      - assets/workshop.jpg (højre foto i tospaltet sektion)
+
+    📐 Tips
+      - Farver matcher mockuppet (mørk navy + SeeSafe rød).
+      - Panel overlappes oven på hero-billedet som i mockuppet.
+      - Layout er responsivt ned til mobil.
+  --></body>
+</html>

@@ -1,0 +1,265 @@
+:root {
+  --navy: #14243b; /* mørk blå (baggrund/CTA) */
+  --navy-700: #192a48;
+  --red: #ce2127; /* SeeSafe rød */
+  --accent: #e6edf7;
+  --ink: #0a0f1a;
+  --muted: #5b6374;
+
+  --radius: 18px;
+  --maxw: 1200px;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  /* NAVBAR – præcise mål fra mockup */
+  --nav-top-h: 150px; /* øverste bjælke (logo) */
+  --nav-links-h: 64px; /* nederste bjælke (menu) */
+  --logo-h: 200px; /* visuel logo-højde */
+  --medal-h: 120px; /* medalje-størrelse */
+  --menu-gap: 72px; /* afstand mellem links */
+}
+
+/* Reset/grundlag */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  color: var(--ink);
+}
+
+/* Container */
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: 0 20px;
+}
+
+/* ========== HEADER / NAVBAR ========== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Øverste bjælke med centreret logo og medalje til højre */
+.nav-top {
+  background: var(--navy);
+}
+.nav-top-inner {
+  position: relative;
+  height: var(--nav-top-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-centered {
+  height: var(--logo-h);
+  width: auto;
+  display: block;
+}
+.medal-badge {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: var(--medal-h);
+  width: auto;
+}
+
+/* Nederste bjælke med centrerede links */
+.nav-links {
+  background: var(--navy);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+.menu-center {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: var(--nav-links-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--menu-gap);
+}
+.menu-center a {
+  color: #e7eefc;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: 18px;
+}
+.menu-center a:hover {
+  color: #fff;
+}
+
+/* Responsive justeringer til navbar */
+@media (max-width: 900px) {
+  .logo-centered {
+    height: 72px;
+  }
+  .medal-badge {
+    display: none;
+  } /* skjul medalje på mobil */
+  .menu-center {
+    gap: 28px;
+    font-size: 16px;
+  }
+  :root {
+    --nav-links-h: 56px;
+  }
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 640px; /* sektionens visuelle højde */
+  background: url("billeder/Alm Farve (14).jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center; /* vertikal centrering af panelet */
+  justify-content: center; /* horisontal centrering af panelet */
+}
+
+/* Tekstpanel ovenpå billedet */
+.panel {
+  background: rgba(20, 36, 59, 0.86);
+  backdrop-filter: saturate(120%) blur(2px);
+  color: #fff;
+  padding: 36px 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 960px;
+  text-align: center;
+}
+.panel h2 {
+  margin: 0 0 12px;
+  font: 800 42px/1.15 Montserrat, Inter, sans-serif;
+}
+.panel p {
+  margin: 0 0 10px;
+  color: #e3ebff;
+}
+
+@media (max-width: 980px) {
+  .hero {
+    height: 460px;
+    padding: 0 12px;
+  }
+  .panel {
+    padding: 24px 24px;
+  }
+  .panel h2 {
+    font-size: 32px;
+  }
+}
+
+/* ========== CONTENT SEKTIONER ========== */
+section {
+  padding: 64px 0;
+}
+
+.why {
+  background: #fff;
+  border: 2px solid #1e355a;
+  border-radius: 12px;
+  padding: 26px;
+  box-shadow: 0 10px 16px rgba(10, 15, 26, 0.06);
+}
+.why h3 {
+  margin: 0 0 10px;
+  font: 800 22px Montserrat, Inter, sans-serif;
+}
+.why p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 34px;
+  align-items: center;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.bullets h4 {
+  margin: 0 0 10px;
+  font: 700 18px/1.4 Montserrat, Inter, sans-serif;
+}
+.bullets ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.bullets li {
+  margin: 8px 0;
+}
+
+.photo {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== CTA ========== */
+.cta {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 12px;
+  padding: 70px 26px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta h3 {
+  margin: 0 0 10px;
+  font: 700 22px/1.35 Montserrat, Inter, sans-serif;
+}
+.cta .logo {
+  position: absolute;
+  right: 22px;
+  bottom: 16px;
+  font-weight: 800;
+  font-size: 28px;
+}
+.logo .see {
+  color: #fff;
+}
+.logo .safe {
+  color: var(--red);
+}
+
+/* ========== FOOTER ========== */
+footer {
+  padding: 40px 0 60px;
+  color: var(--muted);
+  font-size: 14px;
+}
+footer a {
+  color: inherit;
+}
+
+/* Utilities */
+.muted {
+  color: var(--muted);
+}
