@@ -17,7 +17,6 @@
     />
   </head>
   <body>
-    <!-- Header / Navigation -->
     <header class="topbar">
       <div class="nav-top">
         <div class="wrap nav-top-inner">
@@ -28,22 +27,46 @@
               class="logo-centered"
             />
           </a>
-          <img
-            src="billeder/certificateeksempel.png"
-            alt="Medalje"
-            class="medal-badge"
-          />
+
+          <!-- Venstre medalje (beholdes) -->
           <img
             src="billeder/certificateeksempel.png"
             alt="Medalje"
             class="medal-badge2"
           />
+
+          <!-- Højre medalje (skjules på mobil) -->
+          <img
+            src="billeder/certificateeksempel.png"
+            alt="Medalje"
+            class="medal-badge"
+          />
+
+          <!-- Burger flyttet op i topbaren (vises kun på mobil) -->
+          <button
+            class="burger"
+            aria-label="Åbn hovedmenu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span class="burger-lines" aria-hidden="true"></span>
+          </button>
         </div>
       </div>
 
       <nav class="nav-links" aria-label="Primær navigation">
-        <div class="wrap">
+        <div class="wrap nav-bar">
           <ul class="menu-center">
+            <li><a href="#om">Om sikringsdagen</a></li>
+            <li><a href="#partners">Samarbejdspartnere</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+          <!-- (ingen burger her længere) -->
+        </div>
+
+        <!-- Mobilmenu -->
+        <div id="mobileMenu" class="mobile-nav" hidden>
+          <ul>
             <li><a href="#om">Om sikringsdagen</a></li>
             <li><a href="#partners">Samarbejdspartnere</a></li>
             <li><a href="kontakt.html">Kontakt</a></li>
@@ -103,8 +126,8 @@
       </div>
     </section>
 
-    <!-- Two column: bullets + image -->
-    <section>
+    <!-- Two column: bullets + image (desktop side-by-side, mobil: billede OVER) -->
+    <section class="features">
       <div class="wrap grid">
         <div class="card bullets">
           <h4>Det kan du opleve på dagen:</h4>
@@ -162,6 +185,7 @@
         </div>
       </div>
     </section>
+
     <footer>
       <div class="wrap footer-inner">
         <img
@@ -172,5 +196,7 @@
         <p>© <span id="year"></span> SeeSafe • Alle rettigheder forbeholdes</p>
       </div>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
