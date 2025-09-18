@@ -1,0 +1,404 @@
+:root {
+  --navy: #14243b;
+  --navy-700: #192a48;
+  --red: #ce2127;
+  --accent: #e6edf7;
+  --ink: #0a0f1a;
+  --muted: #5b6374;
+
+  --radius: 18px;
+  --maxw: 1700px;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  --para-gap: 16px;
+  --line-height: 1.7;
+
+  /* NAVBAR dimens. */
+  --nav-top-h: 150px;
+  --nav-links-h: 64px; /* bliver 56px på mobil via media query */
+  --logo-h: 200px;
+  --medal-h: 150px;
+  --menu-gap: 100px;
+
+  --contact-panel-w: 720px;
+}
+
+/* Reset/grundlag */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  background-color: #d0dff7;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  color: var(--ink);
+
+  /* VIGTIGT: plads til fixed navbar (ændrer sig automatisk når --nav-links-h/--nav-top-h ændres) */
+  padding-top: calc(var(--nav-top-h) + var(--nav-links-h));
+}
+
+/* Container */
+.wrap {
+  --wrap-pad: 16px;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: 0 var(--wrap-pad);
+}
+@media (min-width: 1400px) {
+  .wrap {
+    --wrap-pad: 24px;
+  }
+}
+
+/* ========== HEADER / NAVBAR ========== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+
+  /* Glass-layer (ses fordi de indre bjælker gøres transparente nedenfor) */
+  background: rgba(20, 36, 59, 1); /* fuld i toppen */
+  backdrop-filter: saturate(120%) blur(6px);
+  -webkit-backdrop-filter: saturate(120%) blur(6px); /* Safari/iOS */
+  transition: background 280ms ease, box-shadow 280ms ease;
+}
+
+/* Øverste bjælke – GØR TRANSPARENT så glass kan ses */
+.nav-top {
+  background: transparent;
+}
+.nav-top-inner {
+  position: relative;
+  height: var(--nav-top-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-centered {
+  height: var(--logo-h);
+  width: auto;
+  display: block;
+}
+.medal-badge {
+  position: absolute;
+  right: 24px;
+  top: 70%;
+  transform: translateY(-50%);
+  height: var(--medal-h);
+  width: auto;
+}
+.medal-badge2 {
+  position: absolute;
+  left: 24px;
+  top: 70%;
+  transform: translateY(-50%);
+  height: var(--medal-h);
+  width: auto;
+}
+
+/* Nederste bjælke – OGSÅ TRANSPARENT */
+.nav-links {
+  background: transparent;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+/* Desktop menu */
+.menu-center {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: var(--nav-links-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--menu-gap);
+}
+.menu-center a {
+  color: #e7eefc;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: 18px;
+}
+.menu-center a:hover {
+  color: #fff;
+}
+
+/* NAV: burger + mobilmenu */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--nav-links-h);
+  position: relative;
+}
+.burger {
+  display: none;
+  position: absolute;
+  right: var(--wrap-pad);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.burger:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+.burger-lines,
+.burger-lines::before,
+.burger-lines::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #e7eefc;
+  border-radius: 2px;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+.burger-lines {
+  margin-inline: auto;
+  position: relative;
+}
+.burger-lines::before {
+  position: absolute;
+  left: 0;
+  top: -8px;
+}
+.burger-lines::after {
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+.burger[aria-expanded="true"] .burger-lines {
+  transform: rotate(45deg);
+}
+.burger[aria-expanded="true"] .burger-lines::before {
+  transform: translateY(8px) rotate(90deg);
+}
+.burger[aria-expanded="true"] .burger-lines::after {
+  transform: translateY(-8px) rotate(90deg);
+  opacity: 0;
+}
+
+/* Mobil-dropdown (må gerne være opak for læsbarhed) */
+.mobile-nav {
+  background: var(--navy-700);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.mobile-nav ul {
+  margin: 0;
+  padding: 10px var(--wrap-pad) 16px;
+  list-style: none;
+}
+.mobile-nav li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.mobile-nav a {
+  display: block;
+  padding: 14px 6px;
+  color: #e7eefc;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: 18px;
+}
+.mobile-nav a:hover {
+  color: #fff;
+}
+
+/* Nav breakpoints */
+@media (max-width: 900px) {
+  .menu-center {
+    display: none;
+  }
+  .nav-bar {
+    justify-content: flex-start;
+  }
+  .burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 900px) {
+  .medal-badge,
+  .medal-badge2 {
+    height: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+@media (min-width: 901px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+@media (max-width: 900px) {
+  .logo-centered {
+    height: 140px;
+  }
+  .medal-badge {
+    display: none;
+  }
+  .menu-center {
+    gap: 28px;
+  }
+  :root {
+    --nav-links-h: 56px;
+  } /* body padding-top opdateres automatisk */
+}
+
+/* Fade/glas når der er scrollet – MINDRE fremtrædende */
+body.scrolled .topbar {
+  background: rgba(20, 36, 59, 0.78);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ========== GENERIC HERO LAYOUT (uden baggrundsbilleder) ========== */
+.hero,
+.hero-contact {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero {
+  height: 640px;
+}
+.hero-contact {
+  min-height: 640px;
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .hero-contact {
+    padding: 0 12px;
+  }
+}
+
+/* ========== PANEL (base) ========== */
+.panel {
+  background: rgba(20, 36, 59, 0.86);
+  backdrop-filter: saturate(120%) blur(2px);
+  color: #fff;
+  padding: 36px 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 960px;
+  text-align: left; /* din nuværende adfærd */
+}
+.panel h2 {
+  margin: 0 0 var(--para-gap);
+  font-size: clamp(26px, 3.4vw, 42px);
+}
+@media (max-width: 980px) {
+  .panel {
+    padding: 24px;
+  }
+  .panel h2 {
+    font-size: 32px;
+  }
+}
+
+/* ========== SEKTIONER (fælles) ========== */
+section {
+  padding: 48px 0;
+}
+
+/* Ens afsatser/typografi */
+.why p,
+.panel p,
+.card p {
+  margin: 0 0 var(--para-gap);
+  line-height: var(--line-height);
+}
+.why p:last-child,
+.panel p:last-child,
+.card p:last-child {
+  margin-bottom: 0;
+}
+.panel p {
+  color: #e3ebff;
+}
+
+/* Footer (fælles) */
+footer {
+  background: var(--navy);
+  color: #e7eefc;
+  padding: 40px 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+.footer-logo {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* Utilities */
+.muted {
+  color: var(--muted);
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================
+   MOBIL-NAVBAR KOMPRIMERING
+   (samme layout, mindre højde)
+   + ens vertikal offset, uden layoutændring
+   ============================ */
+@media (max-width: 700px) {
+  :root {
+    --nav-top-h: 70px; /* navbar-højde */
+    --logo-h: 140px;
+    --medal-h: 100px;
+    --nav-shift: 26px; /* hvor meget længere ned de skal */
+  }
+
+  .nav-top-inner {
+    height: var(--nav-top-h);
+  }
+
+  /* Flyt logo-wrapper lidt ned */
+  .brand-center {
+    position: relative;
+    top: var(--nav-shift);
+  }
+  .logo-centered {
+    height: var(--logo-h);
+  }
+
+  /* Flyt medalje og burger ned med samme offset */
+  .medal-badge2 {
+    height: var(--medal-h);
+    top: calc(50% + var(--nav-shift));
+    transform: translateY(-50%);
+  }
+  .burger {
+    top: calc(50% + var(--nav-shift));
+    transform: translateY(-50%);
+  }
+}

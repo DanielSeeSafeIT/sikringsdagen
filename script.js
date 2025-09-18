@@ -25,9 +25,12 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
       const el = document.querySelector(id);
       if (el) {
         e.preventDefault();
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
         window.scrollTo({
           top: el.getBoundingClientRect().top + window.scrollY - 70,
-          behavior: "smooth",
+          behavior: reduceMotion ? "auto" : "smooth",
         });
         mobile?.setAttribute("hidden", "");
         burger?.setAttribute("aria-expanded", "false");
@@ -56,30 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const address = "Lunavej 6, 4700 Næstved";
   const [lat, lng] = coords;
 
-  // --- Helper: generér Krak rute-URL ud fra lat/lng (+ valgfrit navn) ---
   function buildKrakRouteUrl(lat, lng, name = "", zoom = 17) {
     const encName = name
       ? "," + encodeURIComponent(encodeURIComponent(name))
       : "";
-    // rs = ;<lat>,<lng>,<navn>,,geo
     const rs = `;${lat},${lng}${encName},,geo`;
     const c = `${lat},${lng}`;
     return `https://www.krak.dk/kort/ruteplan?rs=${rs}&c=${c}&z=${zoom}`;
   }
 
-  // 2) Init kort
   const map = L.map("map").setView(coords, 15);
 
-  // 3) Tiles
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
   }).addTo(map);
 
-  // 4) Marker
   const marker = L.marker(coords).addTo(map);
 
-  // 5) Rutevejledning (opdateret til mobil)
   function openDirections() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isAndroid = /android/i.test(ua);
@@ -88,28 +85,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let url;
     if (isIOS) {
-      // Stabilt Apple Maps deep link
       url = `https://maps.apple.com/?daddr=${encodeURIComponent(
         address
       )}&dirflg=d`;
     } else if (isAndroid) {
-      // Google Maps – åbner app hvis muligt
       url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
     } else {
-      // Desktop → Krak
       url = buildKrakRouteUrl(lat, lng, "See Safe Aps", 17);
     }
 
     if (isMobile) {
-      // Mobil: brug direkte navigation (undgår about:blank/pop-ups)
       window.location.href = url;
     } else {
-      // Desktop: ny fane er fint
       window.open(url, "_blank", "noopener");
     }
   }
 
-  // 6) Bind klik + popup (uændret, men med Enter-accessibility)
   marker.on("click", openDirections);
   marker.on("keypress", (e) => {
     if (e.originalEvent && e.originalEvent.key === "Enter") openDirections();
@@ -128,3 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// =====================
+// Fade navbar ved scroll
+// =====================
+const SCROLL_THRESHOLD = 50; // px – justér hvis du vil
+function updateTopbarOpacity() {
+  document.body.classList.toggle("scrolled", window.scrollY > SCROLL_THRESHOLD);
+}
+// kør ved load (så det også virker hvis man refresher midt på siden) og ved scroll
+updateTopbarOpacity();
+window.addEventListener("scroll", updateTopbarOpacity, { passive: true });
