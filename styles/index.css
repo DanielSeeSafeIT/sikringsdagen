@@ -146,3 +146,55 @@
     height: 42px;
   }
 }
+
+
+/* Formular inputs matcher dit design */
+#signup input,
+#signup select,
+#signup textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font: 400 16px/1.4 Inter, system-ui, sans-serif;
+  background: #fff;
+}
+#signup input:focus,
+#signup select:focus,
+#signup textarea:focus {
+  outline: 2px solid #2563eb22;
+  border-color: #2563eb;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn[disabled] { opacity: .6; cursor: not-allowed; }
+
+
+/* ===== Desktop trim (forside, ≥1200px) ===== */
+@media (min-width: 1200px) {
+  /* 2-kolonne mere kompakt */
+  .grid {
+    grid-template-columns: 1fr 1fr; /* mere balanceret end 1.1 / 0.9 */
+    gap: 24px;
+  }
+
+  .why,
+  .card { padding: 22px; border-radius: 10px; }
+
+  .why h3 { font-size: 20px; }
+  .bullets h4 { font-size: 18px; }
+
+  .cta {
+    padding: 40px 22px;   /* var 70px 26px */
+  }
+  .cta h3 { font-size: 20px; line-height: 1.35; }
+  .cta-logo-img { height: 56px; }
+}

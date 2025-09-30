@@ -39,8 +39,19 @@ body {
     sans-serif;
   color: var(--ink);
 
-  /* VIGTIGT: plads til fixed navbar (ændrer sig automatisk når --nav-links-h/--nav-top-h ændres) */
+  /* Plads til fixed navbar */
   padding-top: calc(var(--nav-top-h) + var(--nav-links-h));
+
+  /* === Sticky footer layout (global) === */
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+} /* indhold fylder resten */
+footer {
+  margin-top: auto;
 }
 
 /* Container */
@@ -63,15 +74,12 @@ body {
   left: 0;
   right: 0;
   z-index: 999;
-
-  /* Glass-layer (ses fordi de indre bjælker gøres transparente nedenfor) */
-  background: rgba(20, 36, 59, 1); /* fuld i toppen */
+  background: rgba(20, 36, 59, 1);
   backdrop-filter: saturate(120%) blur(6px);
-  -webkit-backdrop-filter: saturate(120%) blur(6px); /* Safari/iOS */
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
   transition: background 280ms ease, box-shadow 280ms ease;
 }
 
-/* Øverste bjælke – GØR TRANSPARENT så glass kan ses */
 .nav-top {
   background: transparent;
 }
@@ -87,31 +95,28 @@ body {
   width: auto;
   display: block;
 }
-.medal-badge {
-  position: absolute;
-  right: 24px;
-  top: 70%;
-  transform: translateY(-50%);
-  height: var(--medal-h);
-  width: auto;
-}
+.medal-badge,
 .medal-badge2 {
   position: absolute;
-  left: 24px;
   top: 70%;
   transform: translateY(-50%);
   height: var(--medal-h);
   width: auto;
 }
+.medal-badge {
+  right: 24px;
+}
+.medal-badge2 {
+  left: 24px;
+}
 
-/* Nederste bjælke – OGSÅ TRANSPARENT */
 .nav-links {
   background: transparent;
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.06) inset;
 }
 
 .menu-center a.active {
-  border-bottom: 2px solid #ffffff; /* Sort streg under */
+  border-bottom: 2px solid #ffffff;
 }
 
 /* Desktop menu */
@@ -197,7 +202,7 @@ body {
   opacity: 0;
 }
 
-/* Mobil-dropdown (må gerne være opak for læsbarhed) */
+/* Mobil-dropdown */
 .mobile-nav {
   background: var(--navy-700);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
@@ -266,13 +271,13 @@ body {
   } /* body padding-top opdateres automatisk */
 }
 
-/* Fade/glas når der er scrollet – MINDRE fremtrædende */
+/* Fade/glas når der er scrollet */
 body.scrolled .topbar {
   background: rgba(20, 36, 59, 0.78);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* ========== GENERIC HERO LAYOUT (uden baggrundsbilleder) ========== */
+/* ========== GENERIC HERO LAYOUT ========== */
 .hero,
 .hero-contact {
   position: relative;
@@ -304,7 +309,7 @@ body.scrolled .topbar {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   max-width: 960px;
-  text-align: left; /* din nuværende adfærd */
+  text-align: left;
 }
 .panel h2 {
   margin: 0 0 var(--para-gap);
@@ -371,8 +376,6 @@ img {
 
 /* ============================
    MOBIL-NAVBAR KOMPRIMERING
-   (samme layout, mindre højde)
-   + ens vertikal offset, uden layoutændring
    ============================ */
 @media (max-width: 700px) {
   :root {
@@ -381,12 +384,9 @@ img {
     --medal-h: 100px;
     --nav-shift: 26px; /* hvor meget længere ned de skal */
   }
-
   .nav-top-inner {
     height: var(--nav-top-h);
   }
-
-  /* Flyt logo-wrapper lidt ned */
   .brand-center {
     position: relative;
     top: var(--nav-shift);
@@ -394,8 +394,6 @@ img {
   .logo-centered {
     height: var(--logo-h);
   }
-
-  /* Flyt medalje og burger ned med samme offset */
   .medal-badge2 {
     height: var(--medal-h);
     top: calc(50% + var(--nav-shift));
@@ -404,5 +402,43 @@ img {
   .burger {
     top: calc(50% + var(--nav-shift));
     transform: translateY(-50%);
+  }
+}
+
+/* ===== Desktop trim (≥1200px) ===== */
+@media (min-width: 1200px) {
+  :root {
+    --nav-top-h: 90px;
+    --nav-links-h: 56px;
+    --logo-h: 120px;
+    --medal-h: 90px;
+    --menu-gap: 48px;
+
+    --maxw: 1280px;
+
+    --para-gap: 12px;
+    --line-height: 1.6;
+  }
+
+  .hero,
+  .hero-contact {
+    min-height: 0;
+    height: 520px;
+  }
+
+  .panel {
+    max-width: 860px;
+    padding: 28px 32px;
+  }
+  .panel h2 {
+    font-size: clamp(24px, 2.2vw, 36px);
+  }
+
+  section {
+    padding: 32px 0;
+  }
+
+  .menu-center a {
+    font-size: 16px;
   }
 }

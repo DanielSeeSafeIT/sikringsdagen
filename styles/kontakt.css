@@ -1,6 +1,6 @@
 /* Hero baggrund (kontakt) */
 .hero-contact {
-  background: url("../billeder/Alm Farve (124).jpg") center/cover no-repeat;
+  background: url("../billeder/Alm Farve (116).jpg") center/cover no-repeat;
 }
 
 /* 2-kolonne: panel + kort */
@@ -8,22 +8,25 @@
   display: grid;
   grid-template-columns: minmax(320px, var(--contact-panel-w)) 1fr;
   gap: 28px;
-  align-items: stretch;
+  align-items: stretch; /* VIGTIGT – gør begge bokse lige høje */
   width: 100%;
   padding: 56px 0;
 }
 
-/* Kort-kortet */
+/* Kort-boks */
 .map-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* sørger for at kortet udfylder hele boksen */
   background: rgba(20, 36, 59, 0.72);
   color: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 16px;
   backdrop-filter: saturate(120%) blur(2px);
+  height: 100%; /* gør boksen lige så høj som den røde */
 }
+
 .map-title {
   align-self: flex-start;
   font: 700 26px/1.2 Montserrat, Inter, sans-serif;
@@ -33,13 +36,15 @@
   border-radius: 999px;
   margin: 0 0 12px;
 }
+
+/* Selve kortet */
 #map {
-  flex: 1;
-  min-height: 420px;
+  flex: 1 1 auto; /* udfylder resthøjden i boksen */
+  min-height: 0; /* VIGTIGT: tillad at kortet tilpasser sig, så det ikke stikker ud */
   width: 100%;
   border-radius: 12px;
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: hidden; /* sørger for at indhold bliver inde i rammen */
 }
 
 /* Panel-variant på kontakt */
@@ -70,16 +75,21 @@
     gap: 20px;
     padding: 32px 0;
   }
+  .map-card {
+    height: auto; /* tillad normal højde på mindre skærme */
+  }
   #map {
-    min-height: 320px;
+    min-height: 320px; /* tilpas for mobil/tablet */
   }
 }
+
 /* Mobil (≤700px) */
 @media (max-width: 700px) {
   #map {
     height: 280px;
   }
 }
+
 /* Lille mobil (≤480px) */
 @media (max-width: 480px) {
   #map {
@@ -92,9 +102,11 @@
   .hero-contact .wrap {
     max-width: 1400px;
   }
+
   .hero-contact {
     min-height: 520px;
   }
+
   :root {
     --contact-panel-w: 620px;
   }
@@ -102,7 +114,7 @@
   .contact-hero-grid {
     grid-template-columns: minmax(360px, var(--contact-panel-w)) 1fr;
     gap: 22px;
-    align-items: center;
+    align-items: stretch; /* behold ens højde på desktop */
   }
 
   .panel--contact {
@@ -110,26 +122,87 @@
     border-radius: 14px;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
   }
+
   .panel--contact h2 {
     font-size: 36px;
   }
 
   .map-card {
-    max-width: 900px;
     padding: 12px 12px 16px;
     border-radius: 14px;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
     background: rgba(20, 36, 59, 0.75);
     backdrop-filter: saturate(115%) blur(1.5px);
   }
+
   .map-title {
     font: 800 22px/1.2 Montserrat, Inter, sans-serif;
     margin: 0 0 8px;
     padding: 6px 10px;
   }
+
   #map {
-    min-height: 380px;
     border-radius: 10px;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ===== Desktop luft + mindre bokse (≥1200px) ===== */
+@media (min-width: 1200px) {
+  /* Mere luft omkring hero-indholdet */
+  .hero-contact {
+    /* fjern fast min-højde og brug luft i stedet */
+    min-height: unset;
+    padding-top: 84px; /* justér efter smag */
+    padding-bottom: 84px;
+  }
+
+  /* Strammere blok */
+  .contact-hero-grid {
+    gap: 20px; /* var 22-28px */
+    padding: 0; /* vi styrer luft via hero-contact */
+  }
+
+  /* Mindre padding i boksene = lavere total højde */
+  .panel--contact,
+  .map-card {
+    padding: 22px 24px; /* var 28-32 / 12-16 */
+    border-radius: 14px;
+  }
+
+  .panel--contact h2 {
+    font-size: 32px; /* var 36px */
+    margin-bottom: 8px;
+  }
+
+  .contact-image {
+    max-height: 180px; /* 160–200px efter smag */
+    width: auto;
+  }
+
+  #map {
+    min-height: 360px; /* 320–380 efter smag */
+  }
+}
+
+/* ===== Ens bredde og centrering (≥1200px) ===== */
+@media (min-width: 1200px) {
+  .contact-hero-grid {
+    /* gør de to bokse lige brede og centrér dem */
+    grid-template-columns: repeat(2, var(--contact-panel-w));
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .map-card {
+    height: 100%;
+  }
+
+  /* Kortet fylder resten af den blå boks – men stikker ikke ud */
+  #map {
+    flex: 1 1 auto;
+    min-height: 340px; /* sikker højde, så det matcher uden at overskride boksens bund */
+    max-height: 100%;
+    overflow: hidden;
   }
 }

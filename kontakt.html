@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/kontakt.css" />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;800&display=swap"
       rel="stylesheet"
@@ -24,7 +23,6 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   </head>
   <body>
-    <!-- Header / Navigation -->
     <header class="topbar">
       <div class="nav-top">
         <div class="wrap nav-top-inner">
@@ -36,21 +34,17 @@
             />
           </a>
 
-          <!-- Venstre medalje (beholdes) -->
           <img
             src="billeder/certificateeksempel.png"
             alt="Medalje"
             class="medal-badge2"
           />
-
-          <!-- Højre medalje (skjules på mobil) -->
           <img
             src="billeder/certificateeksempel.png"
             alt="Medalje"
             class="medal-badge"
           />
 
-          <!-- Burger flyttet op i topbaren (vises kun på mobil) -->
           <button
             class="burger"
             aria-label="Åbn hovedmenu"
@@ -69,10 +63,8 @@
             <li><a href="#partners">Samarbejdspartnere</a></li>
             <li><a href="kontakt.html" class="active">Kontakt</a></li>
           </ul>
-          <!-- (ingen burger her længere) -->
         </div>
 
-        <!-- Mobilmenu -->
         <div id="mobileMenu" class="mobile-nav" hidden>
           <ul>
             <li><a href="index.html">Om sikringsdagen</a></li>
@@ -83,45 +75,47 @@
       </nav>
     </header>
 
-    <!-- Hero (kontakt: panel til venstre, kort til højre) -->
-    <section class="hero-contact">
-      <div class="wrap contact-hero-grid">
-        <div class="panel panel--contact">
-          <h2>Kontakt SeeSafe</h2>
-          <p>
-            Vi tror på, at tryghed begynder med dialog. Derfor er du altid
-            velkommen til at række ud til os – sammen skaber vi rammerne for en
-            sikrere hverdag.
-          </p>
-          <ul>
-            <li>Nummer: +45 70 22 87 78</li>
-            <li>
-              E-mail:
-              <a href="mailto:kontakt@seesafe.dk">kontakt@seesafe.dk</a>
-            </li>
-            <li>
-              Hjemmeside:
-              <a href="https://www.seesafe.dk" target="_blank"
-                >www.seesafe.dk</a
-              >
-            </li>
-            <li>Adresse: Lunavej 6, 4700 Næstved</li>
-          </ul>
-          <img
-            src="billeder/SeeSafekontakt.png"
-            alt="SeeSafe team"
-            class="contact-image"
-          />
-        </div>
-
-        <div class="map-card">
-          <div class="map-title">
-            Tryk på pinpointet for at åbne en rutevejledning
+    <main>
+      <!-- Hero (panel + kort) -->
+      <section class="hero-contact">
+        <div class="wrap contact-hero-grid">
+          <div class="panel panel--contact">
+            <h2>Kontakt SeeSafe</h2>
+            <p>
+              Vi tror på, at tryghed begynder med dialog. Derfor er du altid
+              velkommen til at række ud til os – sammen skaber vi rammerne for
+              en sikrere hverdag.
+            </p>
+            <ul>
+              <li>Nummer: +45 70 22 87 78</li>
+              <li>
+                E-mail:
+                <a href="mailto:kontakt@seesafe.dk">kontakt@seesafe.dk</a>
+              </li>
+              <li>
+                Hjemmeside:
+                <a href="https://www.seesafe.dk" target="_blank"
+                  >www.seesafe.dk</a
+                >
+              </li>
+              <li>Adresse: Lunavej 6, 4700 Næstved</li>
+            </ul>
+            <img
+              src="billeder/SeeSafekontakt.png"
+              alt="SeeSafe team"
+              class="contact-image"
+            />
           </div>
-          <div id="map"></div>
+
+          <div class="map-card">
+            <div class="map-title">
+              Tryk på pinpointet for at åbne en rutevejledning
+            </div>
+            <div id="map"></div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer>
       <div class="wrap footer-inner">

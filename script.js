@@ -130,3 +130,34 @@ function updateTopbarOpacity() {
 // kør ved load (så det også virker hvis man refresher midt på siden) og ved scroll
 updateTopbarOpacity();
 window.addEventListener("scroll", updateTopbarOpacity, { passive: true });
+
+// =====================
+// Tilmeldingsformular (POST til PHP)
+// =====================
+const signupForm = document.getElementById('signup');
+if (signupForm) {
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = signupForm.querySelector('button[type="submit"]');
+    const out = document.getElementById('resultat');
+    btn.disabled = true; out.textContent = 'Sender...';
+
+    try {
+      const res = await fetch(signupForm.action, {
+        method: 'POST',
+        body: new FormData(signupForm)
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && json.ok) {
+        out.textContent = 'Tak for din tilmelding! Tjek din e-mail for bekræftelse.';
+        signupForm.reset();
+      } else {
+        out.textContent = 'Kunne ikke sende. ' + (json.error || 'Prøv igen senere.');
+      }
+    } catch (err) {
+      out.textContent = 'Netværksfejl. Prøv igen.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}
