@@ -10,14 +10,8 @@ require __DIR__ . '/lib/PHPMailer/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// ====== SMTP INDSTILLINGER ======
-const SMTP_HOST = 'mail.sikringsdagen.dk';
-const SMTP_PORT = 587;
-const SMTP_USER = 'info@sikringsdagen.dk';
-const SMTP_PASS = 'DIN_EMAIL_ADGANGSKODE';
-const MAIL_FROM = 'info@sikringsdagen.dk';
-const MAIL_FROM_NAME = 'Sikringsdagen';
-const ADMIN_EMAIL = 'info@sikringsdagen.dk';
+// Indlæs konfiguration (indeholder e-mail og kode)
+require __DIR__ . '/config.php';
 
 // ====== HJÆLPEFUNKTION ======
 function sendMail(string $to, string $subject, string $html, string $text = ''): bool {
